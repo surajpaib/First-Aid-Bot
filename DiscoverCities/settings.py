@@ -24,7 +24,7 @@ SECRET_KEY = '^4_-wa0yo^8(7n3s+q2f2(z)in+(u=z6*-$byq_)!(k_255!dk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'd1f4c4d2.ngrok.io']
+ALLOWED_HOSTS = [u'd1f4c4d2.ngrok.io',u'discover-bot.herokuapp.com']
 
 
 # Application definition
@@ -129,5 +129,3 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
-STATIC_URL = '/static/'

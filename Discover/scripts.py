@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import json
 import re
 
 def get_sub_cards(url):

@@ -1,5 +1,5 @@
 from django_cron import CronJobBase, Schedule
-from Discover.views import main_card
+from Discover.views import post_message
 from Discover.models import BotUser
 from django.http import HttpResponse
 import json
@@ -12,15 +12,10 @@ class MyCronJob(CronJobBase):
     code = 'Discover.MyCronJob' # a unique code
 
     def do(self):
-        b_user=BotUser.objects.all()
-        for b in b_user:
-            with open('card_list.json','r') as fp:
-                data=json.load(fp,'utf-8')
-            main_card(b.user_id,data[b.user_card_count])
+        b_exists=BotUser.objects.all()
+        for b in b_exists:
+            post_message(b.user_id,"Hello")
 
-            b.user_card_count+=1
-            b.save()
-
-        return HttpResponse(status=200)
+            return HttpResponse(status=200)
 
 
