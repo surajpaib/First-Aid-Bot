@@ -292,6 +292,10 @@ def demo_display(recipient_id,body):
                         except:
                             user_card_count=0
                             main_card_template(recipient_id,data[user_card_count])
+
+                        b_user.user_card_count+=1
+                        b_user.save()
+
                 except:
                     if "text" in message["message"]:
 
