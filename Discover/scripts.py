@@ -32,7 +32,10 @@ def get_sub_cards(url):
             try:
                 image=i.find('div',style=True)['style']
                 urls = re.findall('url\((.*?)\)', image)[0].strip("'")
-                image="https://jauntful.com"+urls
+                if urls[0:4]=="http":
+                    image=urls
+                else:
+                    image="https://jauntful.com"+urls
                 print image
 
                 card["image"]=image
