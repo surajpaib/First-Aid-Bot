@@ -57,13 +57,21 @@ def subscribe(recipient_id,body):
                             if recipient_id==b_exists.user_id:
                                 b_exists.user_card_count+=1
                                 b_exists.save()
+                                post_message(recipient_id,"You've already subscribed with us!!")
+                                post_message(recipient_id,"We'll send you your next new place to explore soon!!")
+
+
 
 
                         except:
 
                             b=BotUser.objects.create(user_id=recipient_id,user_card_count=0)
-                            b.save()
 
+                            post_message(recipient_id,"I'll send you updates about new places everyday. Let's start off with your first one.")
+                            with open('card_list.json', 'r') as fp:
+                                data = json.load(fp, encoding='utf-8')
+                            main_card(recipient_id,data[b.user_card_count])
+                            b.save()
                 except:
                     print "Not quick reply"
 
