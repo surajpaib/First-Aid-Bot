@@ -54,8 +54,11 @@ def get_sub_cards(url):
             try:
                 directions=d.find('a',href=True)['href']
                 print directions
-
-                card["directions"]=directions
+                if directions[0:4]=="http":
+                    card["directions"]=directions
+                else:
+                    directions="https://jauntful.com"+directions
+                    card["directions"]=directions
             except:
                 card["directions"]="https://www.google.co.in/search?q="+header
 
