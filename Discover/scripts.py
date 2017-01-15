@@ -15,14 +15,16 @@ def get_sub_cards(url):
             continue
 
         title = list.select('div.tileVenue-header')
+        try:
+            for t in title:
 
-        for t in title:
-            header=t.h4.text
-            card["header"]=header
-            category=t.p.text
-            card["category"]=category
-            break
-
+                header=t.h4.text
+                card["header"]=header
+                category=t.p.text
+                card["category"]=category
+                break
+        except:
+            continue
 
         im=list.select('div.tileVenue-content.js-tileVenue-content')
 
@@ -35,7 +37,7 @@ def get_sub_cards(url):
 
                 card["image"]=image
             except:
-                card["image"]=" "
+                card["image"]="http://static.wixstatic.com/media/b77fe464cfc445da9003a5383a3e1acf.jpg"
             try:
                 tip=i.p.text
                 card["text"]=tip
@@ -52,7 +54,7 @@ def get_sub_cards(url):
 
                 card["directions"]=directions
             except:
-                card["directions"]=" "
+                card["directions"]="https://www.google.co.in/search?q="+header
 
             break
 
