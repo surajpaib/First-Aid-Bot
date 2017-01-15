@@ -6,4 +6,4 @@ django-cron
 gunicorn==19.6.0
 whitenoise==3.2
 dj-database-url==0.4.1
-Pyscopg2==2.6.2
+https://pypi.python.org/packages/7b/a8/dc2d50a6f37c157459cd18bab381c8e6134b9381b50fbe969997b2ae7dbc/psycopg2-2.6.2.tar.gz#md5=4a392949ba31a378a18ed3e775a4693f
