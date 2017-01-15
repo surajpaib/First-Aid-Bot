@@ -1,1 +1,1 @@
-web: gunicorn DiscoverCIties.wsgi --log-file -
+web: gunicorn DiscoverCities.wsgi --log-file -
