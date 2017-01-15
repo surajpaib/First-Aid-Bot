@@ -18,10 +18,8 @@ def get_sub_cards(url):
 
         for t in title:
             header=t.h4.text
-            print header
             card["header"]=header
             category=t.p.text
-            print category
             card["category"]=category
             break
 
