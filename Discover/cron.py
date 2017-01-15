@@ -1,5 +1,5 @@
 from django_cron import CronJobBase, Schedule
-from Discover.views import cron_main_card
+from Discover.views import main_card
 from Discover.models import BotUser
 from django.http import HttpResponse
 import json
@@ -18,7 +18,9 @@ class MyCronJob(CronJobBase):
             with open('card_list.json', 'r') as fp:
                 data = json.load(fp, 'utf-8')
 
-            cron_main_card(b.user_id, data[b.user_card_count],b)
+            main_card(b.user_id, data[b.user_card_count])
+            b.user_card_count+=1
+            b.save()
             return HttpResponse(status=200)
 
 

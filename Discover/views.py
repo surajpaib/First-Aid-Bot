@@ -167,48 +167,6 @@ def main_card(recipient_id,card_data):
     print(status.json())
 
 
-def cron_main_card(recipient_id, card_data,b):
-
-    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
-    response_msg = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                            "title": card_data["city"],
-                            "image_url": card_data["map"],
-                            "subtitle": card_data["description"],
-
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "payload": "click",
-                                    "title": "Discover"
-                                }
-
-                            ]
-
-                        }
-
-                    ]
-                }
-            }
-        }
-    })
-    b.user_card_count+=1
-    b.save()
-    status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
-
-
-
-    print(status.json())
-
 
 
 def post_message(recipient_id,message):
@@ -329,7 +287,7 @@ def demo_display(recipient_id,body):
                     data = json.load(fp, encoding='utf-8')
                 try:
                     b_user = BotUser.objects.get(user_id=recipient_id)
-                    user_card_count = b_user.user_card_count
+                    user_card_count = b_user.user_card_count-1
                 except:
                     user_card_count=0
 
