@@ -18,7 +18,7 @@ class MyCronJob(CronJobBase):
             with open('card_list.json', 'r') as fp:
                 data = json.load(fp, 'utf-8')
 
-            cron_main_card(b.user_id, data[b.user_card_count])
+            cron_main_card(b.user_id, data[b.user_card_count],b)
 
             return HttpResponse(status=200)
 
