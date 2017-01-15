@@ -14,12 +14,13 @@ class MyCronJob(CronJobBase):
     def do(self):
         b_user = BotUser.objects.all()
         for b in b_user:
+            b.user_card_count += 1
+            b.save()
             with open('card_list.json', 'r') as fp:
                 data = json.load(fp, 'utf-8')
             main_card(b.user_id, data[b.user_card_count])
 
-            b.user_card_count += 1
-            b.save()
+
 
             return HttpResponse(status=200)
 
