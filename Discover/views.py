@@ -127,6 +127,7 @@ def main_card_template(recipient_id,card_data):
 
     print(status.json())
 
+
 def main_card(recipient_id,card_data):
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
     response_msg = json.dumps({
@@ -331,6 +332,10 @@ def demo_display(recipient_id,body):
                     user_card_count = b_user.user_card_count
                 except:
                     user_card_count=0
+
+                sub_card_list(recipient_id, data[user_card_count]["link"])
+                time.sleep(8)
+                post_message(recipient_id, message="All done for now! Let's explore more tomorrow")
 
 
             elif message["postback"]["payload"] == "cron_click":
