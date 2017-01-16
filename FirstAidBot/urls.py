@@ -22,5 +22,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^discover/',include('Discover.urls'))
+    url(r'^discover/', include('AidBot.urls'))
 ]

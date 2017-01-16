@@ -44,7 +44,7 @@ STATICFILES_DIRS = (
 
 INSTALLED_APPS =[
     'django_cron',
-    'Discover.apps.DiscoverConfig',
+    'AidBot.apps.AidBotConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +59,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 CRON_CLASSES = [
-"Discover.cron.MyCronJob",
+"AidBot.cron.MyCronJob",
 # ...
 ]
 
@@ -76,7 +76,7 @@ MIDDLEWARE = [
 
 
 
-ROOT_URLCONF = 'DiscoverCities.urls'
+ROOT_URLCONF = 'FirstAidBot.urls'
 
 TEMPLATES = [
     {
@@ -95,7 +95,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DiscoverCities.wsgi.application'
+WSGI_APPLICATION = 'FirstAidBot.wsgi.application'
 
 
 # Database
