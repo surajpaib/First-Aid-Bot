@@ -39,13 +39,12 @@ def quick_replies(recipient_id):
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
     print(status.json())
 
-def get_started(recipient_id,body,send_message,message2):
+def get_started(recipient_id,body,send_message):
     for entry in body['entry']:
         for message in entry['messaging']:
             if "postback" in message:
                 if message["postback"]["payload"]=="start":
                     post_message(recipient_id,send_message)
-                    post_message(recipient_id,message2)
                     quick_replies(recipient_id)
 
 
@@ -71,7 +70,7 @@ def subscribe(recipient_id,body):
                             b=BotUser.objects.create(user_id=recipient_id,user_card_count=0)
 
                             post_message(recipient_id,"I'll send you updates everyday. Let's start off with your first one.")
-
+                            post_message(recipient_id,message="Today, we're going to learn a bit about " + urls[b.user_card_count]['text'])
                             main_card(recipient_id,urls[b.user_card_count])
                             b.save()
                 except:
@@ -91,7 +90,7 @@ def get_recipient_id(body):
 
 
 def main_card_template(recipient_id,card_data):
-    post_message(recipient_id,message="Today, we learn a bit about "+card_data["text"])
+
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
     response_msg = json.dumps({
         "recipient": {
@@ -113,7 +112,6 @@ def main_card_template(recipient_id,card_data):
 
 
 def main_card(recipient_id,card_data):
-    post_message(recipient_id,message="Today, we're going to learn a bit about "+card_data['text'])
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
     response_msg = json.dumps({
         "recipient": {
@@ -134,7 +132,6 @@ def main_card(recipient_id,card_data):
     print(status.json())
 
 def cron_main_card(recipient_id,card_data,b):
-    post_message(recipient_id,message="And today's aid awareness is about, "+card_data['text'])
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
     response_msg = json.dumps({
         "recipient": {
@@ -178,9 +175,11 @@ def demo_display(recipient_id,body):
                         try:
                             b_user=BotUser.objects.get(user_id=recipient_id)
                             user_card_count=b_user.user_card_count
+                            post_message(recipient_id, message="Today, we learn a bit about " + urls[user_card_count]["text"])
                             main_card_template(recipient_id,urls[user_card_count])
                         except:
                             user_card_count=0
+                            post_message(recipient_id,message="Today, we learn a bit about " + urls[user_card_count]["text"])
                             main_card_template(recipient_id,urls[user_card_count])
 
                         b_user.user_card_count+=1
@@ -232,15 +231,14 @@ def webhook(request):
 
         get_started_message="Hey! Welcome to First Aid Bot. I'll help you learn best practices for what to do in an emergency and provide, First Aid"
 
-        get_started_message2="Thousands of people are dying each year in situations where first aid could have made the difference,this includes nearly 900 people who choke to death, 2500 who asphyxiate from a blocked airway and 29000 who die from heart attacks."
 
-        get_started(recipient_id,body,get_started_message,get_started_message2)
+        get_started(recipient_id,body,get_started_message)
 
         ''' Three possible flows after Get Started option'''
+
         subscribe(recipient_id,body)
-
-
         demo_display(recipient_id,body)
+
         return HttpResponse(status=200)
 
 
