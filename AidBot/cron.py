@@ -1,5 +1,5 @@
 from django_cron import CronJobBase, Schedule
-from AidBot.views import cron_main_card,post_message
+from AidBot.views import cron_main_card
 from AidBot.models import BotUser
 from django.http import HttpResponse
 import json
@@ -7,7 +7,7 @@ import json
 
 
 class MyCronJob(CronJobBase):
-    RUN_EVERY_MINS =  1# 5every 2 hours
+    RUN_EVERY_MINS =  2# 5every 2 hours
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'AidBot.MyCronJob' # a unique code
 
