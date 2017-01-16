@@ -15,9 +15,9 @@ class MyCronJob(CronJobBase):
         b_user = BotUser.objects.all()
         for b in b_user:
 
-            with open('card_list.json', 'r') as fp:
+            with open('url_list.json', 'r') as fp:
                 data = json.load(fp, 'utf-8')
-            post_message(b.user_id, message="And today's aid awareness is about, " + data[b.user_card_count]['text'])
+            post_message(b.user_id, message="And today's aid awareness is about, " + data[b.user_card_count]["text"])
             cron_main_card(b.user_id, data[b.user_card_count],b)
 
             return HttpResponse(status=200)

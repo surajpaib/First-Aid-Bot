@@ -59,8 +59,9 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 CRON_CLASSES = [
-"AidBot.cron.MyCronJob",
-# ...
+
+"AidBot.cron.MyCronJob"
+
 ]
 
 

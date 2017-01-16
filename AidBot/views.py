@@ -139,7 +139,7 @@ def cron_main_card(recipient_id,card_data,b):
             "attachment": {
                 "type": "video",
                 "payload": {
-                    "url":card_data['url']
+                    "url":card_data["url"]
                 }
             }
         }
