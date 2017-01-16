@@ -191,10 +191,7 @@ def demo_display(recipient_id,body):
                         if message["message"]["text"]=="help" or message["message"]["text"]=="Help" or  message["message"]["text"]=="HELP":
 
                             post_message(recipient_id, message="I'll send you video content everyday about providing aid for different situations. I hope to gear you up!")
-
-                        else:
-
-                            post_message(recipient_id,message="I can only help you by sending content for now! Type \"help\" if you need it")
+                            return HttpResponse(status=200)
 
 
 
