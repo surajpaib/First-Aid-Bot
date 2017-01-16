@@ -233,7 +233,7 @@ def webhook(request):
 
         get_started_message="Hey! Welcome to First Aid Bot. I'll help you learn best practices for what to do in an emergency and provide, First Aid"
 
-        get_started_message2="Thousands of people are dying each year in situations where first aid could have made the difference; this includes nearly 900 people who choke to death, 2’500 who asphyxiate from a blocked airway and 29’000 who die from heart attacks."
+        get_started_message2="Thousands of people are dying each year in situations where first aid could have made the difference,this includes nearly 900 people who choke to death, 2500 who asphyxiate from a blocked airway and 29000 who die from heart attacks."
 
         get_started(recipient_id,body,get_started_message,get_started_message2)
 
