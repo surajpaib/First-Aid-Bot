@@ -108,7 +108,7 @@ def main_card_template(recipient_id,card_data):
     })
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
 
-
+    quick_replies(recipient_id)
     print(status.json())
 
 
@@ -186,12 +186,14 @@ def demo_display(recipient_id,body):
                         b_user.user_card_count+=1
                         b_user.save()
 
+                        return HttpResponse(status=200)
+
                 except:
                     if "text" in message["message"]:
                         if message["message"]["text"]=="help" or message["message"]["text"]=="Help" or  message["message"]["text"]=="HELP":
 
                             post_message(recipient_id, message="I'll send you video content everyday about providing aid for different situations. I hope to gear you up!")
-                            return HttpResponse(status=200)
+                        return HttpResponse(status=200)
 
 
 
