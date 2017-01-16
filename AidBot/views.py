@@ -57,8 +57,6 @@ def subscribe(recipient_id,body):
                         try:
                             b_exists=BotUser.objects.get(user_id=recipient_id)
                             if recipient_id==b_exists.user_id:
-                                b_exists.user_card_count+=1
-                                b_exists.save()
                                 post_message(recipient_id,"You've already subscribed with us!!")
 
 
