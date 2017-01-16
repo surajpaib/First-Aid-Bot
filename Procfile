@@ -1,1 +1,1 @@
-web: gunicorn DiscoverCities.wsgi --log-file -
+web: gunicorn FirstAidBot.wsgi --log-file -
