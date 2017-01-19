@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .scripts import get_sub_cards
 import requests
 from AidBot.models import BotUser
 # Create your views here.
@@ -11,7 +10,7 @@ import time
 ACCESS_TOKEN="EAAIwbZBDYzr8BANC8jCOpFZBqDmx6oM7nCG4UWmNxS5ijZAIJ0j8ZBs9qkG6L7ki0ZADf06oPl1zgAmSM4hxkPXJO7q5Ij0k5S0IUcygRGa5G5J7dvja7JAnB35ZAofQa2vqYPtD3nIXZCaX1TlZBK235CkAMp7wsvuhZCDj2klzFNQZDZD"
 
 
-urls=[{'url':'https://2.sendvid.com/ob29ioyt.mp4','text':'Asthma'},{'url':'https://2.sendvid.com/a0xjqwuq.mp4','text':'Heavy Bleeding'}]
+urls=[{'url':'https://2.sendvid.com/ob29ioyt.mp4','text':'Asthma','description':''},{'url':'https://2.sendvid.com/a0xjqwuq.mp4','text':'Heavy Bleeding'},{'url':'https://2.sendvid.com/3qym39uv.mp4','text':'Broken Bones'},{'url':'https://3.sendvid.com/5aofzkew.mp4','text':'Burns'},{'url':'https://1.sendvid.com/j49biv9m.mp4','text':'Choking'},{'url':'https://3.sendvid.com/2nlaza0z.mp4','text':'Diabetes'},{'url':'https://1.sendvid.com/0cbm46t9.mp4','text':'Distress'},{}]
 
 
 def quick_replies(recipient_id):
@@ -126,8 +125,40 @@ def main_card(recipient_id,card_data):
     })
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
 
+    button(recipient_id,"Video Credits: British Red Cross. Make sure you find the right Emergency Helpline for your Country","https://en.wikipedia.org/wiki/List_of_emergency_telephone_numbers")
 
     print(status.json())
+
+
+
+def button(recipient_id,text,url):
+    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
+    response_msg = json.dumps({
+  "recipient":{
+    "id":recipient_id
+  },
+  "message":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":text,
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":url,
+            "title":"Show Website"
+              }
+        ]
+      }
+    }
+  }
+})
+    status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
+
+    print(status.json())
+
+
 
 def cron_main_card(recipient_id,card_data,b):
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
@@ -149,7 +180,10 @@ def cron_main_card(recipient_id,card_data,b):
     b.user_card_count+=1
     b.save()
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
-
+    button(recipient_id,
+           "Video Credits: British Red Cross. Make sure you find the right Emergency Helpline for your Country",
+           "https://en.wikipedia.org/wiki/List_of_emergency_telephone_numbers")
+    button(recipient_id)
 
     print(status.json())
 

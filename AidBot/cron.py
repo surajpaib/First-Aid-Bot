@@ -6,7 +6,8 @@ import json
 
 
 urls = [{'url': 'https://2.sendvid.com/ob29ioyt.mp4', 'text': 'Asthma'},
-        {'url': 'https://2.sendvid.com/a0xjqwuq.mp4', 'text': 'Heavy Bleeding'}]
+        {'url': 'https://2.sendvid.com/a0xjqwuq.mp4', 'text': 'Heavy Bleeding'},
+        ]
 class MyCronJob(CronJobBase):
     RUN_EVERY_MINS = 1 # 5every 2 hours
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
