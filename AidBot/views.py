@@ -147,7 +147,8 @@ def button(recipient_id,text,url):
           {
             "type":"web_url",
             "url":url,
-            "title":"Show Website"
+            "title":"Show Website",
+            "webview_height_ratio":"compact"
               }
         ]
       }
