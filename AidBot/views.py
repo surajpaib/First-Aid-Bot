@@ -220,6 +220,36 @@ def demo_display(recipient_id,body):
 
                         return HttpResponse(status=200)
 
+                    elif message["message"]["quick_reply"]["payload"]=="help":
+                        try:
+                            mes="First Aid Bot sends you updates daily about different situations and how you can effectively offer primary aid. \nYou can also enter a situation scenario and I'll offer you suggestions and best practices. You can also try the first aid Quiz in the Menu to see how good you've gotten "
+                            post_message(recipient_id,mes)
+                            return HttpResponse(status=200)
+                        except:
+
+                            return HttpResponse(status=200)
+
+
+
+                    elif message["message"]["quick_reply"]["payload"]=="search":
+                        try:
+                            mes="Describe to First Aid Bot your situation and I'll analyze it for you and give you tips on providing aid"
+                            post_message(recipient_id,mes)
+                            return HttpResponse(status=200)
+                        except:
+                            return HttpResponse(status=200)
+
+                    elif message["message"]["quick_reply"]["payload"]=="quiz":
+                        try:
+                            mes="Currently a Work in Progress!"
+                            post_message(recipient_id,mes)
+                            return HttpResponse(status=200)
+                        except:
+                            return HttpResponse(status=200)
+
+
+
+
                 except:
                     if "text" in message["message"]:
                         if message["message"]["text"]=="help" or message["message"]["text"]=="Help" or  message["message"]["text"]=="HELP":
