@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a925d3fe-2579-40d9-b03c-3b7f45672b7e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AidBot/messenger_functions.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AidBot/witclient.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/AidBot/discover_content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/AidBot/url_list.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/AidBot/urlslist.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AidBot/views.py" afterPath="$PROJECT_DIR$/AidBot/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,24 +70,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urlslist.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AidBot/urlslist.txt">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AidBot/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="482">
+              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AidBot/views.py">
+      <file leaf-file-name="messenger_functions.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AidBot/messenger_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="97" column="30" lean-forward="true" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+            <state relative-caret-position="462">
+              <caret line="272" column="58" lean-forward="false" selection-start-line="272" selection-start-column="58" selection-end-line="272" selection-end-column="58" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="witclient.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AidBot/witclient.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,36 +109,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="card_list.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/card_list.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="23265" lean-forward="false" selection-start-line="0" selection-start-column="23265" selection-end-line="0" selection-end-column="23265" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="url_list.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AidBot/url_list.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="62" lean-forward="false" selection-start-line="0" selection-start-column="62" selection-end-line="0" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="discover_content.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AidBot/discover_content.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -149,6 +136,7 @@
       <find>start</find>
       <find>get</find>
       <find>cron</find>
+      <find>not</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,6 +179,8 @@
         <option value="$PROJECT_DIR$/AidBot/cron.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/AidBot/views.py" />
+        <option value="$PROJECT_DIR$/AidBot/witclient.py" />
+        <option value="$PROJECT_DIR$/AidBot/messenger_functions.py" />
       </list>
     </option>
   </component>
@@ -626,14 +616,17 @@
           <line>15</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/AidBot/messenger_functions.py</url>
+          <line>269</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FirstAidBot/settings.py" />
-    <entry file="file://$PROJECT_DIR$/AidBot/apps.py" />
     <entry file="file://$PROJECT_DIR$/AidBot/url_list.json" />
     <entry file="file://$PROJECT_DIR$/AidBot/views.py" />
     <entry file="file://$PROJECT_DIR$/AidBot/models.py" />
@@ -733,14 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AidBot/discover_content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/card_list.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -800,6 +785,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AidBot/discover_content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AidBot/data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -811,7 +804,25 @@
     <entry file="file://$PROJECT_DIR$/AidBot/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
-          <caret line="97" column="30" lean-forward="true" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AidBot/witclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AidBot/messenger_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="272" column="58" lean-forward="false" selection-start-line="272" selection-start-column="58" selection-end-line="272" selection-end-column="58" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
