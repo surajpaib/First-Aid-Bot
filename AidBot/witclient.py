@@ -7,5 +7,5 @@ client=Wit(access_token=wit_token)
 
 def wit_client(text):
     resp = client.message(text)
-    res = 'Yay, got Wit.ai response: ' + str(resp)
-    return res
+    value=resp['entities']['intent'][0]['value']
+    return value
