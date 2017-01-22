@@ -258,15 +258,17 @@ def demo_display(recipient_id,body):
                             user_card_count=b_user.user_card_count
                             post_message(recipient_id, message="Today, we learn a bit about " + urls[user_card_count]["text"])
                             main_card_template(recipient_id,urls[user_card_count])
+                            return HttpResponse(status=200)
                         except:
                             user_card_count=0
                             post_message(recipient_id,message="Today, we learn a bit about " + urls[user_card_count]["text"])
                             main_card_template(recipient_id,urls[user_card_count])
+                            b_user.user_card_count += 1
+                            b_user.save()
 
-                        b_user.user_card_count+=1
-                        b_user.save()
+                            return HttpResponse(status=200)
 
-                        return HttpResponse(status=200)
+
                 except:
                     if "text" in message["message"]:
                         try:
