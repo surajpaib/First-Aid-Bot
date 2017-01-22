@@ -5,12 +5,16 @@ import requests
 from AidBot.models import BotUser
 # Create your views here.
 import time
-
+from wit import Wit
+from AidBot.data import get_urls
 
 ACCESS_TOKEN="EAAIwbZBDYzr8BANC8jCOpFZBqDmx6oM7nCG4UWmNxS5ijZAIJ0j8ZBs9qkG6L7ki0ZADf06oPl1zgAmSM4hxkPXJO7q5Ij0k5S0IUcygRGa5G5J7dvja7JAnB35ZAofQa2vqYPtD3nIXZCaX1TlZBK235CkAMp7wsvuhZCDj2klzFNQZDZD"
 
+urls=get_urls()
 
-urls=[{'url':'https://2.sendvid.com/ob29ioyt.mp4','text':'Asthma','description':''},{'url':'https://2.sendvid.com/a0xjqwuq.mp4','text':'Heavy Bleeding'},{'url':'https://2.sendvid.com/3qym39uv.mp4','text':'Broken Bones'},{'url':'https://3.sendvid.com/5aofzkew.mp4','text':'Burns'},{'url':'https://1.sendvid.com/j49biv9m.mp4','text':'Choking'},{'url':'https://3.sendvid.com/2nlaza0z.mp4','text':'Diabetes'},{'url':'https://1.sendvid.com/0cbm46t9.mp4','text':'Distress'},{}]
+
+wit_token='V5RTD2FOM3PFJE4DJ5XEI4E7FNWS3RHE'
+client=Wit(access_token=wit_token)
 
 
 def quick_replies(recipient_id):
@@ -252,9 +256,9 @@ def demo_display(recipient_id,body):
 
                 except:
                     if "text" in message["message"]:
-                        if message["message"]["text"]=="help" or message["message"]["text"]=="Help" or  message["message"]["text"]=="HELP":
-
-                            post_message(recipient_id, message="I'll send you video content everyday about providing aid for different situations. I hope to gear you up!")
+                        resp = client.message(message["message"]["text"])
+                        res='Yay, got Wit.ai response: ' + str(resp)
+                        post_message(recipient_id, message=res)
                         return HttpResponse(status=200)
 
 
