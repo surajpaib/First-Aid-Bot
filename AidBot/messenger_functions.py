@@ -269,12 +269,15 @@ def demo_display(recipient_id,body):
                         return HttpResponse(status=200)
                 except:
                     if "text" in message["message"]:
-                        response=wit_client(message["message"]["text"])
-                        for url in urls:
-                            if url['text'].lower() ==response:
-                                post_message(recipient_id,url['desc'])
-                                break
-                        return HttpResponse(status=200)
+                        try:
+                            response=wit_client(message["message"]["text"])
+                            for url in urls:
+                                if url['text'].lower() ==response:
+                                    post_message(recipient_id,url['desc'])
+                                    break
+                            return HttpResponse(status=200)
+                        except:
+                            return HttpResponse(status=200)
 
             elif "postback" in message:
                 if message["postback"]["payload"]=="help":
