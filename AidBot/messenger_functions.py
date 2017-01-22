@@ -1,12 +1,12 @@
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+
 import json
 import requests
 from AidBot.models import BotUser
 # Create your views here.
 from AidBot.witclient import wit_client
 from AidBot.data import get_urls
-
+import time
 
 
 
@@ -122,9 +122,11 @@ def main_card_template(recipient_id,card_data):
     })
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
 
-    quick_replies(recipient_id)
-    print(status.json())
 
+    print(status.json())
+    time.sleep(5)
+    quick_replies(recipient_id)
+    return HttpResponse(status=200)
 
 
 
