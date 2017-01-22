@@ -278,7 +278,7 @@ def demo_display(recipient_id,body):
                 if message["postback"]["payload"] == "demo":
 
                         user_card_count = 0
-                        post_message(recipient_id,message="Here's a demo video, " + urls[user_card_count]["text"])
+                        post_message(recipient_id,message="Here's a demo video to show you how the kind of information I give.\n Here's some information on Asthma " + urls[user_card_count]["text"])
                         main_card_template(recipient_id, urls[user_card_count])
                         time.sleep(5)
                         quick_replies(recipient_id)
