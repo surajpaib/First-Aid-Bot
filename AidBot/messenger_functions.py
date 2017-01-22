@@ -22,21 +22,30 @@ def quick_replies(recipient_id):
         "recipient": {
             "id": recipient_id
         },
-        "message": {
-            "text": "I'll send you updates daily. Would you like to Subscribe?",
-            "quick_replies": [
-                {
-                    "content_type": "text",
-                    "title": "Yes",
-                    "payload": "yes"
-                },
-                {
-                    "content_type": "text",
-                    "title": "View Demo",
-                    "payload": "demo"
-                }
+        "message":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+           {
+            "title":"Would you like to subscribe?",
+            "buttons":[
+              {
+                  "type": "postback",
+                  "title": "Yes",
+                  "payload": "yes"
+              },{
+                "type":"postback",
+                "title":"View Demo",
+                "payload":"demo"
+              }
             ]
-        }
+          }
+        ]
+      }
+    }
+  }
     })
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
     print(status.json())
@@ -61,9 +70,9 @@ def get_started(recipient_id,body,send_message):
 def subscribe(recipient_id,body):
     for entry in body['entry']:
         for message in entry['messaging']:
-            if "message" in message:
+            if "postback" in message:
                 try:
-                    if message["message"]["quick_reply"]["payload"]=="yes":
+                    if message["postback"]["payload"]=="yes":
                         try:
                             b_exists=BotUser.objects.get(user_id=recipient_id)
                             if recipient_id==b_exists.user_id:
@@ -253,37 +262,38 @@ def demo_display(recipient_id,body):
     for entry in body['entry']:
         for message in entry['messaging']:
             if "message" in message:
-                try:
-                    if message["message"]["quick_reply"]["payload"]=="demo":
-                        try:
-                            b_user=BotUser.objects.get(user_id=recipient_id)
-                            user_card_count=b_user.user_card_count
-                            post_message(recipient_id, message="Today, we learn a bit about " + urls[user_card_count]["text"])
-                            main_card_template(recipient_id,urls[user_card_count])
+                if "text" in message["message"]:
+                    try:
+                        response=wit_client(message["message"]["text"])
+                        for url in urls:
+                            if url['text'].lower() ==response:
+                                post_message(recipient_id,url['desc'])
+                                break
                             return HttpResponse(status=200)
-                        except:
-                            user_card_count=0
-                            post_message(recipient_id,message="Today, we learn a bit about " + urls[user_card_count]["text"])
-                            main_card_template(recipient_id,urls[user_card_count])
-                            b_user.user_card_count += 1
-                            b_user.save()
-
-                            return HttpResponse(status=200)
-
-
-                except:
-                    if "text" in message["message"]:
-                        try:
-                            response=wit_client(message["message"]["text"])
-                            for url in urls:
-                                if url['text'].lower() ==response:
-                                    post_message(recipient_id,url['desc'])
-                                    break
-                            return HttpResponse(status=200)
-                        except:
-                            return HttpResponse(status=200)
+                    except:
+                        return HttpResponse(status=200)
 
             elif "postback" in message:
+
+                if message["postback"]["payload"] == "demo":
+                    try:
+                        b_user = BotUser.objects.get(user_id=recipient_id)
+                        user_card_count = b_user.user_card_count
+                        post_message(recipient_id,
+                                     message="Today, we learn a bit about " + urls[user_card_count]["text"])
+                        main_card_template(recipient_id, urls[user_card_count])
+                        b_user.user_card_count += 1
+                        b_user.save()
+                        return HttpResponse(status=200)
+                    except:
+                        user_card_count = 0
+                        post_message(recipient_id,
+                                     message="Today, we learn a bit about " + urls[user_card_count]["text"])
+                        main_card_template(recipient_id, urls[user_card_count])
+
+
+                        return HttpResponse(status=200)
+
                 if message["postback"]["payload"]=="help":
                     try:
                             mes="First Aid Bot sends you updates daily about different situations and how you can effectively offer primary aid. \nYou can also enter a situation scenario and I'll offer you suggestions and best practices. You can also try the first aid Quiz in the Menu to see how good you've gotten "
