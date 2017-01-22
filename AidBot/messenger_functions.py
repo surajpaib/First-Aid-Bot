@@ -88,6 +88,8 @@ def subscribe(recipient_id,body):
 
                             post_message(recipient_id,"I'll send you updates everyday. Let's start off with your first one.")
                             post_message(recipient_id,message="Today, we're going to learn a bit about " + urls[b.user_card_count]['text'])
+                            post_message(b.user_id, message=urls[b.user_card_count]['desc'])
+
                             main_card(recipient_id,urls[b.user_card_count])
                             b.save()
                 except:
@@ -133,9 +135,8 @@ def main_card_template(recipient_id,card_data):
 
 
     print(status.json())
-    time.sleep(5)
-    quick_replies(recipient_id)
-    return HttpResponse(status=200)
+
+
 
 
 
@@ -233,7 +234,6 @@ def cron_main_card(recipient_id,card_data,b):
     button(recipient_id,
            "Video Credits: British Red Cross. Make sure you find the right Emergency Helpline for your Country",
            "https://en.wikipedia.org/wiki/List_of_emergency_telephone_numbers")
-    button(recipient_id)
 
     print(status.json())
 
@@ -276,22 +276,12 @@ def demo_display(recipient_id,body):
             elif "postback" in message:
 
                 if message["postback"]["payload"] == "demo":
-                    try:
-                        b_user = BotUser.objects.get(user_id=recipient_id)
-                        user_card_count = b_user.user_card_count
-                        post_message(recipient_id,
-                                     message="Today, we learn a bit about " + urls[user_card_count]["text"])
-                        main_card_template(recipient_id, urls[user_card_count])
-                        b_user.user_card_count += 1
-                        b_user.save()
-                        return HttpResponse(status=200)
-                    except:
+
                         user_card_count = 0
-                        post_message(recipient_id,
-                                     message="Today, we learn a bit about " + urls[user_card_count]["text"])
+                        post_message(recipient_id,message="Here's a demo video, " + urls[user_card_count]["text"])
                         main_card_template(recipient_id, urls[user_card_count])
-
-
+                        time.sleep(5)
+                        quick_replies(recipient_id)
                         return HttpResponse(status=200)
 
                 if message["postback"]["payload"]=="help":
