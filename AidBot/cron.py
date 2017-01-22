@@ -12,9 +12,10 @@ class MyCronJob(CronJobBase):
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'AidBot.MyCronJob' # a unique code
 
-    urls=get_urls()
+
 
     def do(self):
+        urls = get_urls()
         b_user = BotUser.objects.all()
         for b in b_user:
 
