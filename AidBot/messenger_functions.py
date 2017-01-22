@@ -271,7 +271,7 @@ def demo_display(recipient_id,body):
                     if "text" in message["message"]:
                         response=wit_client(message["message"]["text"])
                         for url in urls:
-                            if url['title'].lower() ==response:
+                            if url['text'].lower() ==response:
                                 post_message(recipient_id,url['desc'])
                                 break
                         return HttpResponse(status=200)

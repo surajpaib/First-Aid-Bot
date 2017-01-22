@@ -1,5 +1,5 @@
 from django_cron import CronJobBase, Schedule
-from AidBot.views import cron_main_card,post_message
+from AidBot.messenger_functions import cron_main_card,post_message
 from AidBot.models import BotUser
 from django.http import HttpResponse
 from AidBot.data import get_urls
