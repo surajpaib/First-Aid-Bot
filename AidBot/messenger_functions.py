@@ -270,7 +270,10 @@ def demo_display(recipient_id,body):
                 except:
                     if "text" in message["message"]:
                         response=wit_client(message["message"]["text"])
-                        post_message(recipient_id,response)
+                        for url in urls:
+                            if url['title'].lower() ==response:
+                                post_message(recipient_id,url['desc'])
+                                break
                         return HttpResponse(status=200)
 
             elif "postback" in message:
