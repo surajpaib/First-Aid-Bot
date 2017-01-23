@@ -267,6 +267,8 @@ def demo_display(recipient_id,body):
                             if url['text'].lower() ==response:
                                 post_message(recipient_id, "This might be due to *"+response+"* here's what you can do,")
                                 post_message(recipient_id,url['desc'])
+                                break
+
 
                         return HttpResponse(status=200)
                     except:
