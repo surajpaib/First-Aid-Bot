@@ -262,11 +262,12 @@ def demo_display(recipient_id,body):
                     try:
                         response=wit_client(message["message"]["text"])
                         for url in urls:
+                            print url['text'].lower()
+                            print response
                             if url['text'].lower() ==response:
-                                print url['text'].lower()
                                 post_message(recipient_id, "This might be due to *"+response+"* here's what you can do,")
                                 post_message(recipient_id,url['desc'])
-                                break
+
                             return HttpResponse(status=200)
                     except:
                         return HttpResponse(status=200)
