@@ -29,16 +29,20 @@ def quick_replies(recipient_id):
         "template_type":"generic",
         "elements":[
            {
-            "title":"Would you like to subscribe?",
+            "title":"There's plentry of things you can do with me",
             "buttons":[
               {
                   "type": "postback",
-                  "title": "Yes",
+                  "title": "Subscribe",
                   "payload": "yes"
               },{
                 "type":"postback",
-                "title":"View Demo",
+                "title":"What to keep in a First Aid Kit",
                 "payload":"demo"
+              },{
+                "type":"postback",
+                "title":"Importance of First AId",
+                "payload":"facts"
               }
             ]
           }
@@ -113,28 +117,6 @@ def get_recipient_id(body):
 
 
 
-
-
-def main_card_template(recipient_id,card_data):
-
-    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
-    response_msg = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type": "video",
-                "payload": {
-                    "url":card_data['url']
-                }
-            }
-        }
-    })
-    status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
-
-
-    print(status.json())
 
 
 
@@ -251,7 +233,30 @@ def post_message(recipient_id,message):
 
 
 
-
+def generic_template(recipient_id,title,img_url,subtitle):
+    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
+    response_msg = json.dumps({"recipient": {"id": recipient_id}, "message":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+           {
+            "title":title,
+            "image_url":img_url,
+            "subtitle":subtitle,
+            "default_action": {
+              "type": "web_url",
+              "url":img_url,
+              "webview_height_ratio": "tall"
+            }
+           }]
+      }
+    }
+    }
+    })
+    status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
+    print(status.json())
 
 
 
@@ -276,12 +281,13 @@ def demo_display(recipient_id,body):
             elif "postback" in message:
 
                 if message["postback"]["payload"] == "demo":
+                        generic_template(recipient_id,"First Aid Kit","http://cf.kleinworthco.com/wp-content/uploads/2013/05/first-aid-kit-checklist.jpg","What's essential to carry on a first aid list. If you can't find what you need in your region, ask your Pharmacist for Alternatives")
 
-                        user_card_count = 0
-                        post_message(recipient_id,message="Here's a demo video to show you how the kind of information I give.\n Here's some information on Asthma " + urls[user_card_count]["text"])
-                        main_card_template(recipient_id, urls[user_card_count])
-                        time.sleep(5)
-                        quick_replies(recipient_id)
+                        return HttpResponse(status=200)
+
+                if message["postback"]["payload"] == "facts":
+                        generic_template(recipient_id,"First Aid Facts","http://www.jtacpr.com/wp-content/uploads/first-aid-at-home-tips.jpg","  ")
+
                         return HttpResponse(status=200)
 
                 if message["postback"]["payload"]=="help":
