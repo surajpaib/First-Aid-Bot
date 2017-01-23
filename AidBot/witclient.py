@@ -7,5 +7,7 @@ client=Wit(access_token=wit_token)
 
 def wit_client(text):
     resp = client.message(text)
+    print resp
+
     value=resp['entities']['intent'][0]['value']
     return value
