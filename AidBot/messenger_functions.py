@@ -268,7 +268,7 @@ def demo_display(recipient_id,body):
                                 post_message(recipient_id, "This might be due to *"+response+"* here's what you can do,")
                                 post_message(recipient_id,url['desc'])
 
-                            return HttpResponse(status=200)
+                        return HttpResponse(status=200)
                     except:
                         return HttpResponse(status=200)
 
