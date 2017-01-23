@@ -48,7 +48,6 @@ def webhook(request):
 
         ''' Three possible flows after Get Started option'''
 
-        subscribe(recipient_id,body)
         demo_display(recipient_id,body)
 
         return HttpResponse(status=200)
