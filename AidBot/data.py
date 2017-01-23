@@ -1,6 +1,6 @@
 def get_urls():
     urls=[{'url':'https://2.sendvid.com/ob29ioyt.mp4','text':'Asthma','desc':'Best Practices: \n 1. Help them take their medication \n 2. Reassure the person \n 3. Call the emergency helpline'},
-          {'url':'https://2.sendvid.com/a0xjqwuq.mp4','text':'Heavy Bleeding','desc':'Best Practices: \n 1. Put pressure on the wound \n 2. Call the emergency helpline if need be \n 3. Put pressure until help arrives'},
+          {'url':'https://2.sendvid.com/a0xjqwuq.mp4','text':'Bleeding','desc':'Best Practices: \n 1. Put pressure on the wound \n 2. Call the emergency helpline if need be \n 3. Put pressure until help arrives'},
           {'url':'https://2.sendvid.com/3qym39uv.mp4','text':'Broken Bones','desc':'Best Practices: \n1. Support the injury and prevent movement \n 2. Call the emergency and continue to offer support'},
           {'url':'https://3.sendvid.com/5aofzkew.mp4','text':'Burns','desc':'Best Practices: \n1.Cool the burn by running it under cold water \n 2. Cover the burn with a clean cling film or plastic bag \n 3.For a serious burn, call the emergency '},
           {'url':'https://1.sendvid.com/j49biv9m.mp4','text':'Choking','desc':'Best Practices: \n1. Hit firmly on the back between the shoulder blades to dislodge the object'},
