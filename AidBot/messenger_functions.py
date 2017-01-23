@@ -37,11 +37,11 @@ def quick_replies(recipient_id):
                   "payload": "yes"
               },{
                 "type":"postback",
-                "title":"What to keep in a First Aid Kit",
+                "title":"First Aid Kit",
                 "payload":"demo"
               },{
                 "type":"postback",
-                "title":"Importance of First AId",
+                "title":"First Aid Facts",
                 "payload":"facts"
               }
             ]
@@ -80,6 +80,7 @@ def subscribe(recipient_id,body):
                         try:
                             b_exists=BotUser.objects.get(user_id=recipient_id)
                             if recipient_id==b_exists.user_id:
+
                                 post_message(recipient_id,"You've already subscribed with us!!")
 
 
@@ -281,7 +282,7 @@ def demo_display(recipient_id,body):
             elif "postback" in message:
 
                 if message["postback"]["payload"] == "demo":
-                        generic_template(recipient_id,"First Aid Kit","http://cf.kleinworthco.com/wp-content/uploads/2013/05/first-aid-kit-checklist.jpg","What's essential to carry on a first aid list. If you can't find what you need in your region, ask your Pharmacist for Alternatives")
+                        generic_template(recipient_id,"First Aid Kit","http://cf.kleinworthco.com/wp-content/uploads/2013/05/first-aid-kit-checklist.jpg","If you can't find what you need in your region, ask your Pharmacist for Alternatives")
 
                         return HttpResponse(status=200)
 
