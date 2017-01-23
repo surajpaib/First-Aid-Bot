@@ -263,6 +263,7 @@ def demo_display(recipient_id,body):
                         response=wit_client(message["message"]["text"])
                         for url in urls:
                             if url['text'].lower() ==response:
+                                post_message(recipient_id, "This might be due to <b>"+response+"</b> here's what you can do,")
                                 post_message(recipient_id,url['desc'])
                                 break
                             return HttpResponse(status=200)
