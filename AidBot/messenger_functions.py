@@ -29,7 +29,7 @@ def quick_replies(recipient_id):
         "template_type":"generic",
         "elements":[
            {
-            "title":"There's plentry of things you can do with me",
+            "title":"There's plenty of things I can help you out with, alternatively click on the Main Menu to explore more",
             "buttons":[
               {
                   "type": "postback",
@@ -228,7 +228,29 @@ def generic_template(recipient_id,title,img_url,subtitle):
     print(status.json())
 
 
-
+def generic_template2(recipient_id,title,img_url,subtitle):
+    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + ACCESS_TOKEN
+    response_msg = json.dumps({"recipient": {"id": recipient_id}, "message":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+           {
+            "title":title,
+            "subtitle":subtitle,
+            "default_action": {
+              "type": "web_url",
+              "url":img_url,
+              "webview_height_ratio": "tall"
+            }
+           }]
+      }
+    }
+    }
+    })
+    status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
+    print(status.json())
 
 
 
@@ -276,7 +298,7 @@ def demo_display(recipient_id,body):
                     return HttpResponse(status=200)
 
                 if message["postback"]["payload"] == "demo":
-                        generic_template(recipient_id,"First Aid Kit","http://cf.kleinworthco.com/wp-content/uploads/2013/05/first-aid-kit-checklist.jpg","If you can't find what you need in your region, ask your Pharmacist for Alternatives")
+                        generic_template(recipient_id,"First Aid Kit","http://cf.kleinworthco.com/wp-content/uploads/2013/05/first-aid-kit-checklist.jpg","Ask your Pharmacist for Alternatives if you can't find what you need")
 
                         return HttpResponse(status=200)
 
@@ -307,8 +329,7 @@ def demo_display(recipient_id,body):
 
                 elif message["postback"]["payload"]=="quiz":
                     try:
-                            mes="Currently a Work in Progress!"
-                            post_message(recipient_id,mes)
+                            generic_template2(recipient_id,"First Aid Quiz","http://www.redcross.org.uk/What-we-do/First-aid/Everyday-First-Aid/Test-your-first-aid-skills#feedbackForm","Try out your knowledge in situations")
                             return HttpResponse(status=200)
                     except:
                             return HttpResponse(status=200)
