@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from AidBot.messenger_functions import get_recipient_id,demo_display,subscribe,get_started
+from AidBot.messenger_functions import get_recipient_id,demo_display,get_started
 
 
 
@@ -48,7 +48,6 @@ def webhook(request):
 
         ''' Three possible flows after Get Started option'''
 
-        subscribe(recipient_id,body)
         demo_display(recipient_id,body)
 
         return HttpResponse(status=200)

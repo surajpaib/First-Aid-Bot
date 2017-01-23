@@ -70,38 +70,6 @@ def get_started(recipient_id,body,send_message):
 
 
 
-
-def subscribe(recipient_id,body):
-    for entry in body['entry']:
-        for message in entry['messaging']:
-            if "postback" in message:
-                try:
-                    if message["postback"]["payload"]=="yes":
-                        try:
-                            b_exists=BotUser.objects.get(user_id=recipient_id)
-                            if recipient_id==b_exists.user_id:
-
-                                post_message(recipient_id,"You've already subscribed with us!!")
-
-
-
-
-
-                        except:
-
-                            b=BotUser.objects.create(user_id=recipient_id,user_card_count=0)
-
-                            post_message(recipient_id,"I'll send you updates everyday. Let's start off with your first one.")
-                            post_message(recipient_id,message="Today, we're going to learn a bit about " + urls[b.user_card_count]['text'])
-                            post_message(b.user_id, message=urls[b.user_card_count]['desc'])
-
-                            main_card(recipient_id,urls[b.user_card_count])
-                            b.save()
-                except:
-                    print "Not quick reply"
-
-
-
                     #post_message(recipient_id)
 
 
@@ -281,6 +249,32 @@ def demo_display(recipient_id,body):
 
             elif "postback" in message:
 
+
+                if message["postback"]["payload"] == "yes":
+                    try:
+                        b_exists = BotUser.objects.get(user_id=recipient_id)
+                        if recipient_id == b_exists.user_id:
+                            post_message(recipient_id, "You've already subscribed with us!!")
+
+
+
+
+
+                    except:
+
+                        b = BotUser.objects.create(user_id=recipient_id, user_card_count=0)
+
+                        post_message(recipient_id,
+                                     "I'll send you updates everyday. Let's start off with your first one.")
+                        post_message(recipient_id,
+                                     message="Today, we're going to learn a bit about " + urls[b.user_card_count][
+                                         'text'])
+                        post_message(b.user_id, message=urls[b.user_card_count]['desc'])
+
+                        main_card(recipient_id, urls[b.user_card_count])
+                        b.save()
+                    return HttpResponse(status=200)
+
                 if message["postback"]["payload"] == "demo":
                         generic_template(recipient_id,"First Aid Kit","http://cf.kleinworthco.com/wp-content/uploads/2013/05/first-aid-kit-checklist.jpg","If you can't find what you need in your region, ask your Pharmacist for Alternatives")
 
@@ -297,6 +291,7 @@ def demo_display(recipient_id,body):
                             post_message(recipient_id,mes)
                             return HttpResponse(status=200)
                     except:
+
 
                             return HttpResponse(status=200)
 
